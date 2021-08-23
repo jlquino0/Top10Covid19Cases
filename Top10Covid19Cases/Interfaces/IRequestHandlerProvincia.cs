@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Top10Covid19Cases.Implementation;
+using Top10Covid19Cases.Models;
 
 namespace Top10Covid19Cases.Interfaces
 {
-    interface IRequestHandlerIReporte<IReporteRegion>
+    interface IRequestHandlerProvincia<ReporteProvince>
     {
-        System.Threading.Tasks.Task<List<Reporte>> Handle(Reporte reporte);
+        System.Threading.Tasks.Task<List<ReporteProvince>> Handle(Province reporte);
     }
 }

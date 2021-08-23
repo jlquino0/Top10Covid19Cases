@@ -9,13 +9,14 @@ using System.Web;
 using System.Web.Mvc;
 using Top10Covid19Cases.Implementation;
 using Top10Covid19Cases.Interfaces;
+using Top10Covid19Cases.Models;
 
 namespace Top10Covid19Cases.Utils
 {
     public class RequestHandler : 
         IRequestHandler<IRegion>,
-        IRequestHandlerIReporte<IReporte>,
-        IRequestHandlerIReporte<IReporte>
+        IRequestHandlerIReporte<IReporteRegion>,
+        IRequestHandlerProvincia<ReporteProvince>
 
     {
 
@@ -95,6 +96,42 @@ namespace Top10Covid19Cases.Utils
                     List<Reporte> clients = report.ToObject<List<Reporte>>();
 
                     var newList = clients.OrderByDescending(x => x.confirmed).ToList().Take(10).Cast<Reporte>().ToList();
+
+                    return newList;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<ReporteProvince>> Handle(Province reporte)
+        {
+            try
+            {
+                var client = new HttpClient();
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri("https://covid-19-statistics.p.rapidapi.com/reports?iso=" + reporte.iso),
+                    Headers =
+                {
+                    { "x-rapidapi-host", _IEndPointHandler.x_rapidapi_host },
+                    { "x-rapidapi-key", _IEndPointHandler.x_rapidapi_key },
+                },
+                };
+                using (var response = await client.SendAsync(request))
+                {
+                    var responseData = response.Content.ReadAsStringAsync().Result.Replace("region", "Province");
+                    JObject result = JObject.Parse(responseData);
+
+                    var report = result["data"].Value<JArray>();
+                    List<ReporteProvince> clients = report.ToObject<List<ReporteProvince>>();
+
+                    var newList = clients.OrderByDescending(x => x.confirmed).ToList().Take(10).Cast<ReporteProvince>().ToList();
 
                     return newList;
 

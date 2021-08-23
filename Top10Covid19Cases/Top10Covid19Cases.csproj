@@ -137,16 +137,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Implementation\Regions.cs" />
-    <Compile Include="Implementation\Reporte.cs" />
+    <Compile Include="Interfaces\IReporteProvincia.cs" />
+    <Compile Include="Models\Province.cs" />
+    <Compile Include="Models\Regions.cs" />
+    <Compile Include="Models\Reporte.cs" />
     <Compile Include="Interfaces\IEndPointHandler.cs" />
-    <Compile Include="Interfaces\IRegionData.cs" />
+    <Compile Include="Interfaces\IProvince.cs" />
     <Compile Include="Interfaces\IRegions.cs" />
     <Compile Include="Interfaces\IReporte.cs" />
-    <Compile Include="Interfaces\IRequestHandlerIRegionData.cs" />
+    <Compile Include="Interfaces\IReporteRegion.cs" />
     <Compile Include="Interfaces\IRequestHandlerIReporte.cs" />
+    <Compile Include="Interfaces\IRequestHandlerProvincia.cs" />
     <Compile Include="Interfaces\IRequestsHandlerIRegions.cs" />
-    <Compile Include="Models\regions.cs" />
+    <Compile Include="Models\ReporteProvince.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\EndPointsHandler.cs" />
     <Compile Include="Utils\RequestHandler.cs" />
@@ -168,11 +171,13 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.tabletoxml.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\tableHTMLExport.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -11,6 +11,6 @@ namespace Top10Covid19Cases.Interfaces
     {
         string deaths { get; set; }
         int confirmed { get; set; }
-        Region region { get; set; }
+        //Region region { get; set; }
     }
 }

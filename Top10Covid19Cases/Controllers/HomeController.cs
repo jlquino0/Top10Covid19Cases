@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Top10Covid19Cases.Implementation;
 using Top10Covid19Cases.Interfaces;
+using Top10Covid19Cases.Models;
 using Top10Covid19Cases.Utils;
 
 namespace Top10Covid19Cases.Controllers
@@ -28,7 +29,10 @@ namespace Top10Covid19Cases.Controllers
         {
             string strDDLValue = form["RegionList"].ToString();
             ViewBag.RegionList = await _requestHandler.Handle(new Region());
-            return View("Province",await _requestHandler.Handle(new Reporte()));
+            Province reporte = new Province();
+            //reporte.province = new Province();
+            reporte.iso= strDDLValue;
+            return View("Province",await _requestHandler.Handle(reporte));
         }
 
 

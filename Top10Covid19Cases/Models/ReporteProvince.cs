@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using Top10Covid19Cases.Interfaces;
 
-namespace Top10Covid19Cases.Implementation
+namespace Top10Covid19Cases.Models
 {
-    public class Reporte : IReporte
+    public class ReporteProvince : IReporteProvincia
     {
-        public string deaths { get; set ; }
+        public Province province { get ; set ; }
+        public string deaths { get ; set ; }
         public int confirmed { get ; set ; }
-        public Region region { get  ; set ; }
     }
 }

@@ -1,10 +1,11 @@
 ﻿@* @model IEnumerable<Top10Covid19Cases.Implementation.Reporte> *@
 
-@model dynamic 
+@model dynamic
 
 @{
     ViewBag.Title = "Home Page";
 }
+
 
 @using (Html.BeginForm())
 {
@@ -19,6 +20,18 @@
             <div class="column">
                 <input type="submit" value="Report" class="btn btn-default" />
             </div>
+            <div class="column">
+                <button type="button" id="buttonjson">json</button>
+
+            </div>
+            <div class="column">
+                <button type="button" id="buttonxml">xml</button>
+
+            </div>
+            <div class="column">
+                <button type="button" id="buttoncsv">csv</button>
+
+            </div>
         </div>
     </div>
 
@@ -27,10 +40,10 @@
         <div class="col-md-12">
             <div class="panel panel-primary list-panel" id="list-panel">
                 <div class="panel-heading list-panel-heading">
-                    <h1 class="panel-title list-panel-title">Assets</h1>
+                    <h1 class="panel-title list-panel-title">Report</h1>
                 </div>
                 <div class="panel-body">
-                    <table id="assets-data-table" class="table table-striped table-bordered" style="width:100%">
+                    <table id="report-data-table" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Region</th>
@@ -54,4 +67,61 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+
+            $("#buttonjson").click(function () {
+                $("#report-data-table").tableHTMLExport({
+
+                    // csv, txt, json, pdf
+                    type: 'json',
+
+                    // file name
+                    filename: 'jsonreport.json'
+
+                });
+            });
+
+            $("#buttoncsv").click(function () {
+                $("#report-data-table").tableHTMLExport({
+
+                    // csv, txt, json, pdf
+                    type: 'csv',
+
+                    // default file name
+                    filename: 'tableHTMLExport.csv',
+
+                    // for csv
+                    separator: ',',
+                    newline: '\r\n',
+                    trimContent: true,
+                    quoteFields: true,
+
+                    // CSS selector(s)
+                    ignoreColumns: '',
+                    ignoreRows: '',
+
+                    // your html table has html content?
+                    htmlContent: false,
+
+                    // debug
+                    consoleLog: false,
+
+                });
+            });
+
+            $("#buttonxml").click(function () {
+                $("#report-data-table").tabletoxml({
+                    rootnode: "COVID",
+                    childnode: "COVID",
+                    filename: 'COVID'
+                });
+            });
+
+            
+
+        });
+
+    </script>
+
 }
